@@ -81,6 +81,66 @@ public class ArbolMascotas {
         return null;
     }
 
+    public NodoMascota buscarNodo(String codigo) {
+
+        NodoMascota actual = raiz;
+
+        while (actual != null) {
+
+            int comparacion = codigo.compareToIgnoreCase(
+                    actual.getMascota().getCodigo());
+
+            if (comparacion == 0) {
+                return actual;
+            }
+
+            if (comparacion < 0) {
+                actual = actual.getIzquierdo();
+            } else {
+                actual = actual.getDerecho();
+            }
+        }
+
+        return null;
+    }
+
+    public void agregarConsulta(String codigoMascota, Consulta consulta) {
+
+        NodoMascota nodo = buscarNodo(codigoMascota);
+
+        if (nodo == null) {
+            System.out.println("La mascota no se encuentra registrada.");
+            return;
+        }
+
+        if (nodo.getHistorial().existeConsulta(
+                consulta.getCodigoCita())) {
+
+            System.out.println(
+                    "La consulta ya se encuentra en el historial.");
+            return;
+        }
+
+        nodo.getHistorial().insertar(consulta);
+        System.out.println("Consulta agregada al historial.");
+    }
+
+    public void mostrarHistorial(String codigoMascota,
+            ListaTratamientos tratamientos) {
+
+        NodoMascota nodo = buscarNodo(codigoMascota);
+
+        if (nodo == null) {
+            System.out.println("La mascota no se encuentra registrada.");
+            return;
+        }
+
+        System.out.println("\n===== HISTORIAL MEDICO =====");
+        System.out.println(nodo.getMascota());
+        nodo.getHistorial().mostrarConsultas();
+        tratamientos.mostrarTratamientosMascota(codigoMascota);
+    }
+
     public void mostrarInorden() {
 
         if (estaVacio()) {

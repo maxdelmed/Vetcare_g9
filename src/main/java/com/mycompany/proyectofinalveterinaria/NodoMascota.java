@@ -5,11 +5,13 @@ public class NodoMascota {
     private Mascota mascota;
     private NodoMascota izquierdo;
     private NodoMascota derecho;
+    private ListaConsultas historial;
 
     public NodoMascota(Mascota mascota) {
         this.mascota = mascota;
         this.izquierdo = null;
         this.derecho = null;
+        this.historial = new ListaConsultas();
     }
 
     public Mascota getMascota() {
@@ -34,5 +36,9 @@ public class NodoMascota {
 
     public void setDerecho(NodoMascota derecho) {
         this.derecho = derecho;
+    }
+
+    public ListaConsultas getHistorial() {
+        return historial;
     }
 }
