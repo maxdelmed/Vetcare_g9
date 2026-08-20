@@ -7,10 +7,12 @@ package com.mycompany.proyectofinalveterinaria;
 /**
  *
  * @author karen
+ * Integrantes: Max De La Fuente Medina, Karen Malespin Alvarado, Jeff Ian Miranda Garro
  */
 public class ProyectoFinalVeterinaria {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Menu menu = new Menu();
+        menu.mostrarMenu();
     }
 }
